@@ -3,26 +3,88 @@ import {
   Search,
   Server,
   ExternalLink,
-  Wifi,
   User,
   Terminal,
   LayoutGrid,
   BarChart3,
-  Globe
+  Globe,
+  Heart
 } from 'lucide-react';
 import { Card, CardHeader, CardContent, CardTitle, CardDescription } from '@/components/ui/card';
-import { servicesData, hostedWebsites } from './config/config';
+import { servicesData, hostedWebsites, socials } from './config/config';
 import { categoryIcons, categoryColors } from './config/iconMap';
 
 const HomeLabDashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard' or 'websites'
   const [searchTerm, setSearchTerm] = useState('');
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [serviceStatus, setServiceStatus] = useState({});
+  const [websiteStatus, setWebsiteStatus] = useState({});
 
   // Horloge en temps réel
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  // Check if a URL is responding
+  const checkStatus = async (url) => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+      await fetch(url, {
+        method: 'HEAD',
+        mode: 'no-cors',
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+      return true; // If fetch completes without error, consider it online
+    } catch (error) {
+      return false; // If fetch fails, consider it offline
+    }
+  };
+
+  // Check status of all services and websites
+  useEffect(() => {
+    const checkAllStatus = async () => {
+      // Check services
+      const servicePromises = servicesData.map(async (service) => {
+        const isOnline = await checkStatus(service.url);
+        return { id: service.id, status: isOnline };
+      });
+
+      // Check hosted websites
+      const websitePromises = hostedWebsites.map(async (site) => {
+        const isOnline = await checkStatus(site.url);
+        return { id: site.id, status: isOnline };
+      });
+
+      const serviceResults = await Promise.all(servicePromises);
+      const websiteResults = await Promise.all(websitePromises);
+
+      // Update state
+      const newServiceStatus = {};
+      serviceResults.forEach(({ id, status }) => {
+        newServiceStatus[id] = status;
+      });
+      setServiceStatus(newServiceStatus);
+
+      const newWebsiteStatus = {};
+      websiteResults.forEach(({ id, status }) => {
+        newWebsiteStatus[id] = status;
+      });
+      setWebsiteStatus(newWebsiteStatus);
+    };
+
+    // Initial check
+    checkAllStatus();
+
+    // Check every 60 seconds
+    const interval = setInterval(checkAllStatus, 60000);
+
+    return () => clearInterval(interval);
   }, []);
 
   // Filtrage des services (Recherche affecte les deux listes)
@@ -163,7 +225,17 @@ const HomeLabDashboard = () => {
                           <Card className="h-full bg-slate-900/60 border-slate-800/80 hover:border-blue-500/30 hover:bg-slate-800 hover:shadow-lg hover:shadow-blue-900/10 transition-all duration-300 relative overflow-hidden">
                             <div className={`absolute top-0 left-0 w-1 h-full ${service.color.replace('text', 'bg')} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
-                              <CardTitle className="text-lg font-medium text-slate-200 group-hover:text-blue-400 transition-colors">
+                              <CardTitle className="text-lg font-medium text-slate-200 group-hover:text-blue-400 transition-colors flex items-center gap-2">
+                                <span
+                                  className={`h-2 w-2 rounded-full ${
+                                    serviceStatus[service.id] === undefined
+                                      ? 'bg-slate-600 animate-pulse'
+                                      : serviceStatus[service.id]
+                                        ? 'bg-emerald-500'
+                                        : 'bg-red-500'
+                                  }`}
+                                  title={serviceStatus[service.id] === undefined ? 'Checking...' : serviceStatus[service.id] ? 'Online' : 'Offline'}
+                                />
                                 {service.name}
                               </CardTitle>
                               <service.icon className={`h-5 w-5 ${service.color} opacity-80 group-hover:opacity-100 transition-all group-hover:scale-110`} />
@@ -218,7 +290,17 @@ const HomeLabDashboard = () => {
                           <div className={`p-2 rounded-lg bg-slate-950 border border-slate-800 group-hover:border-slate-700 transition-colors`}>
                             <site.icon className={`h-6 w-6 ${site.color}`} />
                           </div>
-                          <div>
+                          <div className="flex items-center gap-2">
+                            <span
+                              className={`h-2 w-2 rounded-full ${
+                                websiteStatus[site.id] === undefined
+                                  ? 'bg-slate-600 animate-pulse'
+                                  : websiteStatus[site.id]
+                                    ? 'bg-emerald-500'
+                                    : 'bg-red-500'
+                              }`}
+                              title={websiteStatus[site.id] === undefined ? 'Checking...' : websiteStatus[site.id] ? 'Online' : 'Offline'}
+                            />
                             <CardTitle className="text-base font-medium text-slate-200 group-hover:text-purple-400 transition-colors">
                               {site.name}
                             </CardTitle>
@@ -246,11 +328,27 @@ const HomeLabDashboard = () => {
 
       </main>
 
-      <footer className="max-w-7xl mx-auto mt-24 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center text-slate-600 text-sm pb-10 gap-4">
-        <p>© 2024 q2r Lab • System Operational</p>
-        <p className="flex items-center gap-1 opacity-70">
-          Maintained by <span className="text-slate-400 hover:text-blue-400 transition-colors cursor-default">Quadeare</span>
-        </p>
+      <footer className="max-w-7xl mx-auto mt-24 pt-8 border-t border-slate-800/50 text-slate-600 text-sm pb-10">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
+          <p className="flex items-center gap-1">© {currentTime.getFullYear()} Q2r Lab • Hosting at home, with love <Heart className="h-4 w-4 text-red-400 fill-red-400" /></p>
+          <p className="flex items-center gap-1 opacity-70">
+            Maintained by <span className="text-slate-400 hover:text-blue-400 transition-colors cursor-default">Quadeare</span>
+          </p>
+        </div>
+        <div className="flex justify-center items-center gap-4 pt-4 border-t border-slate-800/30">
+          {socials.map((social) => (
+            <a
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-slate-300 transition-colors"
+              title={social.name}
+            >
+              <social.icon className="h-5 w-5" />
+            </a>
+          ))}
+        </div>
       </footer>
     </div>
   );

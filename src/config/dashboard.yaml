@@ -111,6 +111,23 @@ services:
     desc: SSO Authentication
     color: text-green-600
 
+  - id: 13
+    name: Romm
+    url: "https://romm.q2r.net"
+    icon: GamepadDirectional
+    category: Media
+    desc: Rom game collection
+    color: text-green-600
+
+  - id: 14
+    name: Minio
+    url: "https://minio-console.q2r.net"
+    icon: CloudUpload
+    category: System
+    desc: S3-compatible object storage 
+    color: text-green-600
+
+
 hostedWebsites:
   - id: 101
     name: Le Ren'Artisan
@@ -146,3 +163,17 @@ hostedWebsites:
     icon: FileText
     desc: Marianna's CV
     color: text-indigo-400
+
+socials:
+  - name: GitHub
+    url: https://github.com/quadeare
+    icon: Github
+  - name: GitLab
+    url: https://gitlab.com/quadeare
+    icon: Gitlab
+  - name: Twitter
+    url: https://twitter.com/quadeare
+    icon: Twitter
+  - name: Bluesky
+    url: https://bsky.app/profile/q2r.net
+    icon: Cloud

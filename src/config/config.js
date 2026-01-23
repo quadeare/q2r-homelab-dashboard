@@ -16,3 +16,9 @@ export const hostedWebsites = config.hostedWebsites.map(website => ({
   ...website,
   icon: iconMap[website.icon]
 }));
+
+// Transform socials data by mapping icon names to icon components
+export const socials = config.socials.map(social => ({
+  ...social,
+  icon: iconMap[social.icon]
+}));

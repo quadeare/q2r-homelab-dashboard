@@ -23,7 +23,12 @@ import {
   Hammer,
   Computer,
   IdCard,
-  Heart
+  Heart,
+  GamepadDirectional,
+  CloudUpload,
+  Github,
+  Gitlab,
+  Twitter
 } from 'lucide-react';
 
 export const iconMap = {
@@ -51,7 +56,12 @@ export const iconMap = {
   Hammer,
   Computer,
   IdCard,
-  Heart
+  Heart,
+  GamepadDirectional,
+  CloudUpload,
+  Github,
+  Gitlab,
+  Twitter
 };
 
 // Category icons mapping
