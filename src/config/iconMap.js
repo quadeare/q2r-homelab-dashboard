@@ -20,6 +20,9 @@ import {
   Server,
   Cpu,
   Wrench,
+  Hammer,
+  Computer,
+  IdCard,
   Heart
 } from 'lucide-react';
 
@@ -45,6 +48,9 @@ export const iconMap = {
   Server,
   Cpu,
   Wrench,
+  Hammer,
+  Computer,
+  IdCard,
   Heart
 };
 

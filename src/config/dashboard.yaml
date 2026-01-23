@@ -28,7 +28,7 @@ services:
     url: "https://nc.q2r.net"
     icon: Cloud
     category: Apps & Productivity
-    desc: File Storage & Collab
+    desc: Cloud File Storage
     color: text-blue-500
 
   - id: 4
@@ -36,7 +36,7 @@ services:
     url: "https://photos.q2r.net"
     icon: Image
     category: Media
-    desc: Photo Backup
+    desc: Photos management
     color: text-purple-400
 
   - id: 5
@@ -95,11 +95,27 @@ services:
     desc: Dynmap / BlueMap
     color: text-green-600
 
+  - id: 11
+    name: KASM
+    url: "https://kasm.q2r.net"
+    icon: Computer
+    category: System
+    desc: Virtual Desktop
+    color: text-green-600
+
+  - id: 12
+    name: Keycloak
+    url: "https://sso.q2r.net"
+    icon: IdCard
+    category: System
+    desc: SSO Authentication
+    color: text-green-600
+
 hostedWebsites:
   - id: 101
     name: Le Ren'Artisan
     url: https://www.lerenartisan.fr/
-    icon: Globe
+    icon: Hammer
     desc: Le Ren'Artisan
     color: text-cyan-400
 

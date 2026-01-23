@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import {
   Search,
   Server,
-  Activity,
   ExternalLink,
   Wifi,
   User,
@@ -16,7 +15,7 @@ import { servicesData, hostedWebsites } from './config/config';
 import { categoryIcons, categoryColors } from './config/iconMap';
 
 const HomeLabDashboard = () => {
-  const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard', 'websites', or 'monitoring'
+  const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard' or 'websites'
   const [searchTerm, setSearchTerm] = useState('');
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -86,7 +85,7 @@ const HomeLabDashboard = () => {
               }`}
             >
               <LayoutGrid size={16} />
-              Dashboard
+              Services
             </button>
             <button
               onClick={() => setActiveTab('websites')}
@@ -99,17 +98,15 @@ const HomeLabDashboard = () => {
               <Globe size={16} />
               Websites
             </button>
-            <button
-              onClick={() => setActiveTab('monitoring')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                activeTab === 'monitoring'
-                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-900/40'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-              }`}
+            <a
+              href="https://stats.uptimerobot.com/k2GAYTY5Ol"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800"
             >
               <BarChart3 size={16} />
               Status
-            </button>
+            </a>
           </div>
 
           {/* Search Bar (Visible on Dashboard and Websites tabs) */}
@@ -245,45 +242,6 @@ const HomeLabDashboard = () => {
               )}
             </section>
           </div>
-        )}
-
-        {/* Tab Content: MONITORING */}
-        {activeTab === 'monitoring' && (
-          <section className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
-            <div className="flex items-center gap-2 mb-4 px-1">
-              <Activity className="h-5 w-5 text-emerald-400" />
-              <h2 className="text-xl font-semibold text-slate-200">System Status Monitor</h2>
-            </div>
-
-            <div className="bg-slate-900/30 rounded-2xl p-1 border border-slate-800/60 backdrop-blur-sm">
-              {/* Status Page iframe */}
-              <div className="h-[75vh] w-full bg-slate-950 rounded-xl overflow-hidden relative border border-slate-800 shadow-inner">
-                <iframe
-                  src="https://stats.uptimerobot.com/k2GAYTY5Ol"
-                  title="Status Monitor - Full View"
-                  className="w-full h-full border-none"
-                  loading="lazy"
-                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-                />
-                <div className="absolute top-4 right-4 bg-slate-900/90 backdrop-blur text-xs px-3 py-1.5 rounded-full text-slate-400 border border-slate-700 pointer-events-none shadow-xl">
-                  Live Status View
-                </div>
-              </div>
-
-              {/* Fallback link if iframe fails */}
-              <div className="mt-4 text-center">
-                <a
-                  href="https://stats.uptimerobot.com/k2GAYTY5Ol"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors text-sm"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Open in New Tab
-                </a>
-              </div>
-            </div>
-          </section>
         )}
 
       </main>
