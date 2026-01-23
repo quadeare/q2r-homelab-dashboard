@@ -1,0 +1,132 @@
+services:
+  - id: 1
+    name: Plex
+    url: "https://plex.q2r.net"
+    icon: Film
+    category: Media
+    desc: Streaming & Media Server
+    color: text-yellow-500
+
+  - id: 2
+    name: Komga
+    url: "https://ebooks.q2r.net"
+    icon: BookOpen
+    category: Media
+    desc: Comic & Ebook Server
+    color: text-blue-400
+
+  - id: 12
+    name: Audiobookshelf
+    url: "https://audiobooks.q2r.net"
+    icon: Headphones
+    category: Media
+    desc: Audiobooks & Podcasts
+    color: text-amber-600
+
+  - id: 3
+    name: Nextcloud
+    url: "https://nc.q2r.net"
+    icon: Cloud
+    category: Apps & Productivity
+    desc: File Storage & Collab
+    color: text-blue-500
+
+  - id: 4
+    name: Immich
+    url: "https://photos.q2r.net"
+    icon: Image
+    category: Media
+    desc: Photo Backup
+    color: text-purple-400
+
+  - id: 5
+    name: Flood
+    url: "https://dl.q2r.net"
+    icon: DownloadCloud
+    category: System
+    desc: Torrent Client UI
+    color: text-blue-300
+
+  - id: 13
+    name: Prowlarr
+    url: "https://torrents.q2r.net"
+    icon: Flame
+    category: System
+    desc: Indexer Manager
+    color: text-red-500
+
+  - id: 6
+    name: LobeHub
+    url: "https://ai.q2r.net"
+    icon: MessageSquare
+    category: Apps & Productivity
+    desc: AI Chat Interface
+    color: text-green-400
+
+  - id: 7
+    name: SignaturePDF
+    url: "https://pdf.q2r.net"
+    icon: FileSignature
+    category: Apps & Productivity
+    desc: PDF Tools
+    color: text-red-400
+
+  - id: 8
+    name: Vaultwarden
+    url: "https://pass.q2r.net"
+    icon: Shield
+    category: Apps & Productivity
+    desc: Password Manager
+    color: text-slate-400
+
+  - id: 9
+    name: Mealie
+    url: "https://mealie.q2r.net"
+    icon: Utensils
+    category: Apps & Productivity
+    desc: Recipe Manager
+    color: text-orange-400
+
+  - id: 10
+    name: Minecraft Map
+    url: "https://mc.q2r.net"
+    icon: Map
+    category: System
+    desc: Dynmap / BlueMap
+    color: text-green-600
+
+hostedWebsites:
+  - id: 101
+    name: Le Ren'Artisan
+    url: https://www.lerenartisan.fr/
+    icon: Globe
+    desc: Le Ren'Artisan
+    color: text-cyan-400
+
+  - id: 102
+    name: Mandine Coiff
+    url: https://www.mandine-coiff.com/
+    icon: Scissors
+    desc: Hair Salon Website
+    color: text-pink-400
+
+  - id: 103
+    name: My Blog
+    url: https://blog.q2r.net
+    icon: PenTool
+    desc: Tech & Personal Blog
+    color: text-emerald-400
+
+  - id: 104
+    name: Florian Resume
+    url: https://resume.q2r.net
+    icon: FileText
+    desc: Florian's CV
+    color: text-indigo-400
+
+  - id: 105
+    name: Marianna Resume
+    url: https://www.marianna-delima.me/
+    icon: FileText
+    desc: Marianna's CV
+    color: text-indigo-400
