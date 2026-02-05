@@ -73,7 +73,7 @@ export const categoryIcons = {
 
 // Category colors mapping
 export const categoryColors = {
-  Media: 'text-yellow-500',
-  'Apps & Productivity': 'text-blue-500',
-  System: 'text-indigo-500'
+  Media: 'text-amber-400',
+  'Apps & Productivity': 'text-orange-400',
+  System: 'text-purple-400'
 };

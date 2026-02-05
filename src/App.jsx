@@ -111,25 +111,45 @@ const HomeLabDashboard = () => {
   }, [filteredServices]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 p-6 font-sans selection:bg-blue-500/30">
+    <div className="min-h-screen text-amber-50 p-6 font-sans selection:bg-amber-500/20 zelda-background">
+      {/* Hyrule Field Night background */}
+      <div className="zelda-stars" />
+      <div className="hyrule-moon" />
+      <div className="hyrule-hills">
+        <div className="hill hill--far-left" />
+        <div className="hill hill--far-right" />
+        <div className="hill hill--mid" />
+        <div className="hill hill--near" />
+      </div>
+      <div className="hyrule-grass" />
+
+      {/* Fireflies */}
+      <div className="firefly" style={{ top: '35%', left: '8%', '--duration': '7s', '--delay': '0s', '--dx': '45px', '--dy': '-55px', '--ex': '-25px', '--ey': '-90px' }} />
+      <div className="firefly" style={{ top: '55%', left: '82%', '--duration': '9s', '--delay': '2s', '--dx': '-50px', '--dy': '-40px', '--ex': '20px', '--ey': '-75px' }} />
+      <div className="firefly" style={{ top: '68%', left: '22%', '--duration': '6.5s', '--delay': '1s', '--dx': '35px', '--dy': '-50px', '--ex': '-15px', '--ey': '-80px' }} />
+      <div className="firefly" style={{ top: '42%', left: '62%', '--duration': '8s', '--delay': '3.5s', '--dx': '-25px', '--dy': '-65px', '--ex': '35px', '--ey': '-55px' }} />
+      <div className="firefly firefly--navi" style={{ top: '38%', left: '45%', '--duration': '11s', '--delay': '5s', '--dx': '60px', '--dy': '-30px', '--ex': '-40px', '--ey': '-50px' }} />
+      <div className="firefly" style={{ top: '60%', left: '72%', '--duration': '7.5s', '--delay': '4s', '--dx': '-40px', '--dy': '-50px', '--ex': '30px', '--ey': '-85px' }} />
+      <div className="firefly" style={{ top: '75%', left: '50%', '--duration': '8.5s', '--delay': '6s', '--dx': '25px', '--dy': '-45px', '--ex': '-35px', '--ey': '-70px' }} />
+
       {/* Header Global */}
-      <header className="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-end gap-6 border-b border-slate-800 pb-6">
+      <header className="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row justify-between items-end gap-6 border-b border-amber-900/20 pb-6 relative z-10">
         <div className="text-center md:text-left w-full md:w-auto">
           <div className="flex items-center gap-3 mb-2">
-            <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-lg shadow-lg shadow-blue-900/20">
+            <div className="bg-gradient-to-br from-amber-600 to-orange-600 p-2 rounded-2xl shadow-lg shadow-amber-900/40">
               <Terminal className="h-6 w-6 text-white" />
             </div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 bg-clip-text text-transparent tracking-tight">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-amber-400 via-orange-400 to-amber-300 bg-clip-text text-transparent tracking-tight">
               q2r
             </h1>
           </div>
-          <div className="flex items-center gap-2 text-slate-400 text-sm">
+          <div className="flex items-center gap-2 text-amber-200/60 text-sm">
             <User className="h-3 w-3" />
-            <span>Lab Operator: <span className="text-slate-200 font-medium">Quadeare</span></span>
-            <span className="text-slate-600 hidden sm:inline">•</span>
+            <span>Lab Operator: <span className="text-amber-100 font-medium">Quadeare</span></span>
+            <span className="text-amber-900/40 hidden sm:inline">•</span>
             <span className="hidden sm:inline">{currentTime.toLocaleDateString()}</span>
-            <span className="text-slate-600 hidden sm:inline">•</span>
-            <span className="font-mono text-emerald-400 hidden sm:inline">{currentTime.toLocaleTimeString()}</span>
+            <span className="text-amber-900/40 hidden sm:inline">•</span>
+            <span className="font-mono text-amber-400 hidden sm:inline">{currentTime.toLocaleTimeString()}</span>
           </div>
         </div>
 
@@ -137,13 +157,13 @@ const HomeLabDashboard = () => {
         <div className="flex flex-col-reverse md:flex-row gap-4 w-full md:w-auto items-center">
 
           {/* Tabs */}
-          <div className="flex bg-slate-900/50 p-1 rounded-xl border border-slate-800">
+          <div className="flex bg-slate-950/40 p-1.5 rounded-2xl border border-amber-900/20 backdrop-blur-sm">
             <button
               onClick={() => setActiveTab('dashboard')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 activeTab === 'dashboard'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-900/40'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                  ? 'bg-gradient-to-br from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-900/50'
+                  : 'text-amber-200/50 hover:text-amber-100 hover:bg-slate-800/50'
               }`}
             >
               <LayoutGrid size={16} />
@@ -151,10 +171,10 @@ const HomeLabDashboard = () => {
             </button>
             <button
               onClick={() => setActiveTab('websites')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 activeTab === 'websites'
-                  ? 'bg-purple-600 text-white shadow-md shadow-purple-900/40'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                  ? 'bg-gradient-to-br from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-900/50'
+                  : 'text-amber-200/50 hover:text-amber-100 hover:bg-slate-800/50'
               }`}
             >
               <Globe size={16} />
@@ -164,7 +184,7 @@ const HomeLabDashboard = () => {
               href="https://stats.uptimerobot.com/k2GAYTY5Ol"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all text-slate-400 hover:text-slate-200 hover:bg-slate-800"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all text-amber-200/50 hover:text-amber-100 hover:bg-slate-800/50"
             >
               <BarChart3 size={16} />
               Status
@@ -175,11 +195,11 @@ const HomeLabDashboard = () => {
           {(activeTab === 'dashboard' || activeTab === 'websites') && (
             <div className="relative w-full md:w-64">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 text-slate-500" />
+                <Search className="h-4 w-4 text-amber-600" />
               </div>
               <input
                 type="text"
-                className="block w-full pl-10 pr-3 py-2 border border-slate-800 rounded-xl leading-5 bg-slate-900/50 text-slate-200 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 focus:bg-slate-900 transition-all shadow-sm text-sm"
+                className="block w-full pl-10 pr-3 py-2.5 border border-amber-900/20 rounded-2xl leading-5 bg-slate-950/40 text-amber-50 placeholder-amber-200/30 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50 focus:bg-slate-900/60 transition-all shadow-sm text-sm backdrop-blur-sm"
                 placeholder={activeTab === 'dashboard' ? "Find a service..." : "Find a website..."}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -189,7 +209,7 @@ const HomeLabDashboard = () => {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto min-h-[500px]">
+      <main className="max-w-7xl mx-auto min-h-[500px] relative z-10">
 
         {/* Tab Content: DASHBOARD */}
         {activeTab === 'dashboard' && (
@@ -206,10 +226,10 @@ const HomeLabDashboard = () => {
                     <div className="flex items-center justify-between mb-6 px-1">
                       <div className="flex items-center gap-2">
                         <CategoryIcon className={`h-5 w-5 ${categoryColor}`} />
-                        <h2 className="text-xl font-semibold text-slate-200">{category}</h2>
+                        <h2 className="text-xl font-semibold text-amber-50">{category}</h2>
                       </div>
                       {searchTerm && (
-                        <span className="text-xs text-slate-600 font-mono">Found: {services.length}</span>
+                        <span className="text-xs text-amber-200/40 font-mono">Found: {services.length}</span>
                       )}
                     </div>
 
@@ -222,17 +242,17 @@ const HomeLabDashboard = () => {
                           rel="noopener noreferrer"
                           className="group block h-full"
                         >
-                          <Card className="h-full bg-slate-900/60 border-slate-800/80 hover:border-blue-500/30 hover:bg-slate-800 hover:shadow-lg hover:shadow-blue-900/10 transition-all duration-300 relative overflow-hidden">
-                            <div className={`absolute top-0 left-0 w-1 h-full ${service.color.replace('text', 'bg')} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+                          <Card className="h-full bg-slate-900/40 border-amber-900/20 hover:border-amber-500/40 hover:bg-slate-800/60 hover:shadow-xl hover:shadow-amber-900/30 transition-all duration-300 relative overflow-hidden backdrop-blur-sm rounded-2xl">
+                            <div className={`absolute top-0 left-0 w-1.5 h-full ${service.color.replace('text', 'bg')} opacity-0 group-hover:opacity-100 transition-opacity rounded-l-2xl`}></div>
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
-                              <CardTitle className="text-lg font-medium text-slate-200 group-hover:text-blue-400 transition-colors flex items-center gap-2">
+                              <CardTitle className="text-lg font-medium text-amber-50 group-hover:text-amber-300 transition-colors flex items-center gap-2">
                                 <span
                                   className={`h-2 w-2 rounded-full ${
                                     serviceStatus[service.id] === undefined
-                                      ? 'bg-slate-600 animate-pulse'
+                                      ? 'bg-amber-600 animate-pulse'
                                       : serviceStatus[service.id]
-                                        ? 'bg-emerald-500'
-                                        : 'bg-red-500'
+                                        ? 'bg-emerald-400 shadow-lg shadow-emerald-400/50'
+                                        : 'bg-red-400 shadow-lg shadow-red-400/50'
                                   }`}
                                   title={serviceStatus[service.id] === undefined ? 'Checking...' : serviceStatus[service.id] ? 'Online' : 'Offline'}
                                 />
@@ -241,7 +261,7 @@ const HomeLabDashboard = () => {
                               <service.icon className={`h-5 w-5 ${service.color} opacity-80 group-hover:opacity-100 transition-all group-hover:scale-110`} />
                             </CardHeader>
                             <CardContent>
-                              <CardDescription className="text-slate-400 text-sm line-clamp-1">
+                              <CardDescription className="text-amber-200/50 text-sm line-clamp-1">
                                 {service.desc}
                               </CardDescription>
                             </CardContent>
@@ -253,9 +273,9 @@ const HomeLabDashboard = () => {
                 );
               })
             ) : (
-              <div className="text-center py-20 text-slate-500">
+              <div className="text-center py-20 text-amber-200/40">
                 <p className="text-lg">No services found for "{searchTerm}"</p>
-                <button onClick={() => setSearchTerm('')} className="text-blue-400 hover:underline mt-2 text-sm">Clear search</button>
+                <button onClick={() => setSearchTerm('')} className="text-amber-400 hover:text-amber-300 hover:underline mt-2 text-sm transition-colors">Clear search</button>
               </div>
             )}
           </div>
@@ -268,10 +288,10 @@ const HomeLabDashboard = () => {
               <div className="flex items-center justify-between mb-6 px-1">
                 <div className="flex items-center gap-2">
                   <Globe className="h-5 w-5 text-purple-400" />
-                  <h2 className="text-xl font-semibold text-slate-200">Hosted Websites</h2>
+                  <h2 className="text-xl font-semibold text-amber-50">Hosted Websites</h2>
                 </div>
                 {searchTerm && (
-                  <span className="text-xs text-slate-600 font-mono">Found: {filteredHosted.length}</span>
+                  <span className="text-xs text-amber-200/40 font-mono">Found: {filteredHosted.length}</span>
                 )}
               </div>
 
@@ -285,29 +305,29 @@ const HomeLabDashboard = () => {
                       rel="noopener noreferrer"
                       className="group block h-full"
                     >
-                      <Card className="h-full bg-slate-900/40 border-slate-800/60 hover:border-purple-500/30 hover:bg-slate-800 hover:shadow-lg hover:shadow-purple-900/10 transition-all duration-300">
+                      <Card className="h-full bg-slate-900/40 border-amber-900/20 hover:border-purple-500/40 hover:bg-slate-800/60 hover:shadow-xl hover:shadow-purple-900/30 transition-all duration-300 backdrop-blur-sm rounded-2xl">
                         <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                          <div className={`p-2 rounded-lg bg-slate-950 border border-slate-800 group-hover:border-slate-700 transition-colors`}>
+                          <div className={`p-2 rounded-xl bg-slate-950/60 border border-purple-900/30 group-hover:border-purple-500/50 transition-colors`}>
                             <site.icon className={`h-6 w-6 ${site.color}`} />
                           </div>
                           <div className="flex items-center gap-2">
                             <span
                               className={`h-2 w-2 rounded-full ${
                                 websiteStatus[site.id] === undefined
-                                  ? 'bg-slate-600 animate-pulse'
+                                  ? 'bg-amber-600 animate-pulse'
                                   : websiteStatus[site.id]
-                                    ? 'bg-emerald-500'
-                                    : 'bg-red-500'
+                                    ? 'bg-emerald-400 shadow-lg shadow-emerald-400/50'
+                                    : 'bg-red-400 shadow-lg shadow-red-400/50'
                               }`}
                               title={websiteStatus[site.id] === undefined ? 'Checking...' : websiteStatus[site.id] ? 'Online' : 'Offline'}
                             />
-                            <CardTitle className="text-base font-medium text-slate-200 group-hover:text-purple-400 transition-colors">
+                            <CardTitle className="text-base font-medium text-amber-50 group-hover:text-purple-300 transition-colors">
                               {site.name}
                             </CardTitle>
                           </div>
                         </CardHeader>
                         <CardContent>
-                          <div className="flex items-center gap-1 text-xs text-slate-500 mt-1">
+                          <div className="flex items-center gap-1 text-xs text-amber-200/40 mt-1">
                             <ExternalLink size={10} />
                             <span className="truncate max-w-[150px]">{site.url.replace('https://', '')}</span>
                           </div>
@@ -317,9 +337,9 @@ const HomeLabDashboard = () => {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-20 text-slate-500">
+                <div className="text-center py-20 text-amber-200/40">
                   <p className="text-lg">No websites found for "{searchTerm}"</p>
-                  <button onClick={() => setSearchTerm('')} className="text-purple-400 hover:underline mt-2 text-sm">Clear search</button>
+                  <button onClick={() => setSearchTerm('')} className="text-purple-400 hover:text-purple-300 hover:underline mt-2 text-sm transition-colors">Clear search</button>
                 </div>
               )}
             </section>
@@ -328,21 +348,21 @@ const HomeLabDashboard = () => {
 
       </main>
 
-      <footer className="max-w-7xl mx-auto mt-24 pt-8 border-t border-slate-800/50 text-slate-600 text-sm pb-10">
+      <footer className="max-w-7xl mx-auto mt-24 pt-8 border-t border-amber-900/20 text-amber-200/40 text-sm pb-10 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
-          <p className="flex items-center gap-1">© {currentTime.getFullYear()} Q2r Lab • Hosting at home, with love <Heart className="h-4 w-4 text-red-400 fill-red-400" /></p>
+          <p className="flex items-center gap-1">© {currentTime.getFullYear()} Q2r Lab • Hosting at home, with love <Heart className="h-4 w-4 text-red-400 fill-red-400 animate-pulse" /></p>
           <p className="flex items-center gap-1 opacity-70">
-            Maintained by <span className="text-slate-400 hover:text-blue-400 transition-colors cursor-default">Quadeare</span>
+            Maintained by <span className="text-amber-200/60 hover:text-amber-300 transition-colors cursor-default">Quadeare</span>
           </p>
         </div>
-        <div className="flex justify-center items-center gap-4 pt-4 border-t border-slate-800/30">
+        <div className="flex justify-center items-center gap-4 pt-4 border-t border-amber-900/10">
           {socials.map((social) => (
             <a
               key={social.name}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-500 hover:text-slate-300 transition-colors"
+              className="text-amber-200/30 hover:text-amber-300 transition-colors"
               title={social.name}
             >
               <social.icon className="h-5 w-5" />
