@@ -5,7 +5,7 @@ services:
     icon: Film
     category: Media
     desc: Streaming & Media Server
-    color: text-amber-400
+    color: text-blue-400
 
   - id: 2
     name: Komga
@@ -13,7 +13,7 @@ services:
     icon: BookOpen
     category: Media
     desc: Comic & Ebook Server
-    color: text-purple-400
+    color: text-indigo-400
 
   - id: 12
     name: Audiobookshelf
@@ -21,7 +21,7 @@ services:
     icon: Headphones
     category: Media
     desc: Audiobooks & Podcasts
-    color: text-amber-500
+    color: text-sky-400
 
   - id: 3
     name: Nextcloud
@@ -29,7 +29,7 @@ services:
     icon: Cloud
     category: Apps & Productivity
     desc: Cloud File Storage
-    color: text-orange-400
+    color: text-sky-400
 
   - id: 4
     name: Immich
@@ -37,7 +37,7 @@ services:
     icon: Image
     category: Media
     desc: Photos management
-    color: text-pink-400
+    color: text-cyan-400
 
   - id: 5
     name: Flood
@@ -45,7 +45,7 @@ services:
     icon: DownloadCloud
     category: System
     desc: Torrent Client UI
-    color: text-purple-400
+    color: text-indigo-400
 
   - id: 13
     name: Prowlarr
@@ -53,7 +53,7 @@ services:
     icon: Flame
     category: System
     desc: Indexer Manager
-    color: text-orange-500
+    color: text-sky-500
 
   - id: 6
     name: LobeHub
@@ -61,7 +61,7 @@ services:
     icon: MessageSquare
     category: Apps & Productivity
     desc: AI Chat Interface
-    color: text-emerald-400
+    color: text-cyan-400
 
   - id: 7
     name: SignaturePDF
@@ -69,7 +69,7 @@ services:
     icon: FileSignature
     category: Apps & Productivity
     desc: PDF Tools
-    color: text-rose-400
+    color: text-blue-300
 
   - id: 8
     name: Vaultwarden
@@ -77,7 +77,7 @@ services:
     icon: Shield
     category: Apps & Productivity
     desc: Password Manager
-    color: text-amber-300
+    color: text-blue-400
 
   - id: 9
     name: Mealie
@@ -85,7 +85,7 @@ services:
     icon: Utensils
     category: Apps & Productivity
     desc: Recipe Manager
-    color: text-orange-400
+    color: text-sky-500
 
   - id: 10
     name: Minecraft Map
@@ -93,7 +93,7 @@ services:
     icon: Map
     category: System
     desc: Dynmap / BlueMap
-    color: text-emerald-500
+    color: text-cyan-500
 
   - id: 11
     name: KASM
@@ -101,7 +101,7 @@ services:
     icon: Computer
     category: System
     desc: Virtual Desktop
-    color: text-purple-500
+    color: text-indigo-500
 
   - id: 12
     name: Keycloak
@@ -109,7 +109,7 @@ services:
     icon: IdCard
     category: System
     desc: SSO Authentication
-    color: text-amber-500
+    color: text-blue-500
 
   - id: 13
     name: Romm
@@ -117,7 +117,7 @@ services:
     icon: GamepadDirectional
     category: Media
     desc: Rom game collection
-    color: text-pink-500
+    color: text-indigo-500
 
   - id: 14
     name: Minio
@@ -125,7 +125,7 @@ services:
     icon: CloudUpload
     category: System
     desc: S3-compatible object storage
-    color: text-orange-500
+    color: text-sky-400
 
 
 hostedWebsites:
@@ -134,35 +134,35 @@ hostedWebsites:
     url: https://www.lerenartisan.fr/
     icon: Hammer
     desc: Le Ren'Artisan
-    color: text-amber-400
+    color: text-blue-400
 
   - id: 102
     name: Mandine Coiff
     url: https://www.mandine-coiff.com/
     icon: Scissors
     desc: Hair Salon Website
-    color: text-pink-400
+    color: text-cyan-400
 
   - id: 103
     name: My Blog
     url: https://blog.q2r.net
     icon: PenTool
     desc: Tech & Personal Blog
-    color: text-emerald-400
+    color: text-sky-400
 
   - id: 104
     name: Florian Resume
     url: https://resume.q2r.net
     icon: FileText
     desc: Florian's CV
-    color: text-purple-400
+    color: text-indigo-400
 
   - id: 105
     name: Marianna Resume
     url: https://www.marianna-delima.me/
     icon: FileText
     desc: Marianna's CV
-    color: text-purple-400
+    color: text-indigo-400
 
 socials:
   - name: GitHub

@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-/* ========== Hyrule Field Night — Zelda-inspired background ========== */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ========== Deep Blue Night — unified dark blue background ========== */
 
 @keyframes twinkle {
   0%, 100% { opacity: 0.3; }
@@ -31,8 +33,8 @@
 }
 
 @keyframes moon-pulse {
-  0%, 100% { box-shadow: 0 0 40px 12px rgba(200, 215, 255, 0.06); }
-  50% { box-shadow: 0 0 60px 25px rgba(200, 215, 255, 0.1); }
+  0%, 100% { box-shadow: 0 0 40px 12px rgba(160, 190, 255, 0.06); }
+  50% { box-shadow: 0 0 60px 25px rgba(160, 190, 255, 0.1); }
 }
 
 /* ===== Main container ===== */
@@ -41,21 +43,33 @@
   overflow: hidden;
 }
 
-/* Sky-to-field gradient */
+/* Sky gradient — light mode */
 .zelda-background::before {
   content: '';
   position: fixed;
   inset: 0;
   background: linear-gradient(180deg,
+    #dbeafe 0%,
+    #bfdbfe 25%,
+    #93c5fd 50%,
+    #bfdbfe 75%,
+    #eff6ff 100%
+  );
+  z-index: 0;
+  transition: background 0.5s ease;
+}
+
+/* Sky gradient — dark mode */
+.dark .zelda-background::before {
+  background: linear-gradient(180deg,
     #060a14 0%,
     #0b1628 18%,
     #0d1e2e 32%,
-    #0e2414 50%,
-    #14381e 68%,
-    #184524 82%,
-    #1c4e2a 100%
+    #0c1830 50%,
+    #0e1e3a 68%,
+    #102444 82%,
+    #12284a 100%
   );
-  z-index: 0;
 }
 
 /* ===== Stars ===== */
@@ -67,6 +81,12 @@
   height: 55vh;
   pointer-events: none;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.dark .zelda-stars {
+  opacity: 1;
 }
 
 .zelda-stars::before {
@@ -80,7 +100,7 @@
     radial-gradient(1.5px 1.5px at 38% 18%, rgba(255,255,255,0.7), transparent),
     radial-gradient(1px 1px at 45% 6%, rgba(255,255,255,0.4), transparent),
     radial-gradient(1px 1px at 52% 22%, rgba(255,255,255,0.5), transparent),
-    radial-gradient(2px 2px at 62% 4%, rgba(251,191,36,0.6), transparent),
+    radial-gradient(2px 2px at 62% 4%, rgba(180,210,255,0.6), transparent),
     radial-gradient(1px 1px at 72% 15%, rgba(255,255,255,0.6), transparent),
     radial-gradient(1px 1px at 80% 28%, rgba(255,255,255,0.35), transparent),
     radial-gradient(1.5px 1.5px at 88% 10%, rgba(255,255,255,0.7), transparent),
@@ -88,7 +108,7 @@
     radial-gradient(1px 1px at 20% 35%, rgba(255,255,255,0.3), transparent),
     radial-gradient(1px 1px at 58% 32%, rgba(255,255,255,0.4), transparent),
     radial-gradient(1px 1px at 35% 42%, rgba(255,255,255,0.2), transparent),
-    radial-gradient(1.5px 1.5px at 75% 38%, rgba(200,220,255,0.5), transparent);
+    radial-gradient(1.5px 1.5px at 75% 38%, rgba(180,210,255,0.5), transparent);
   animation: twinkle 5s ease-in-out infinite;
 }
 
@@ -100,13 +120,13 @@
     radial-gradient(1px 1px at 3% 8%, rgba(255,255,255,0.6), transparent),
     radial-gradient(1px 1px at 18% 15%, rgba(255,255,255,0.4), transparent),
     radial-gradient(1px 1px at 32% 30%, rgba(255,255,255,0.5), transparent),
-    radial-gradient(1.5px 1.5px at 48% 12%, rgba(200,210,255,0.65), transparent),
+    radial-gradient(1.5px 1.5px at 48% 12%, rgba(180,210,255,0.65), transparent),
     radial-gradient(1px 1px at 58% 5%, rgba(255,255,255,0.3), transparent),
     radial-gradient(1px 1px at 68% 24%, rgba(255,255,255,0.45), transparent),
     radial-gradient(1px 1px at 82% 8%, rgba(255,255,255,0.4), transparent),
     radial-gradient(1px 1px at 92% 30%, rgba(255,255,255,0.55), transparent),
     radial-gradient(1px 1px at 42% 37%, rgba(255,255,255,0.3), transparent),
-    radial-gradient(2px 2px at 12% 44%, rgba(251,191,36,0.35), transparent);
+    radial-gradient(2px 2px at 12% 44%, rgba(180,210,255,0.35), transparent);
   animation: twinkle-alt 7s ease-in-out infinite;
 }
 
@@ -119,13 +139,19 @@
   height: 50px;
   border-radius: 50%;
   background: radial-gradient(circle at 38% 38%,
-    rgba(220, 230, 255, 0.22),
-    rgba(180, 200, 240, 0.1) 55%,
+    rgba(200, 220, 255, 0.22),
+    rgba(160, 190, 240, 0.1) 55%,
     transparent 78%
   );
   animation: moon-pulse 10s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.dark .hyrule-moon {
+  opacity: 1;
 }
 
 /* ===== Hills ===== */
@@ -143,14 +169,16 @@
 .hill {
   position: absolute;
   border-radius: 50% 50% 0 0;
+  transition: background 0.5s ease, opacity 0.5s ease;
 }
 
+/* Hills — light mode */
 .hill--far-left {
   bottom: -15px;
   left: -12%;
   width: 58%;
   height: 72%;
-  background: linear-gradient(to top, #112610, #0e1f0d);
+  background: linear-gradient(to top, rgba(147, 197, 253, 0.4), rgba(191, 219, 254, 0.25));
   opacity: 0.7;
 }
 
@@ -159,7 +187,7 @@
   right: -8%;
   width: 52%;
   height: 62%;
-  background: linear-gradient(to top, #132a12, #0f220f);
+  background: linear-gradient(to top, rgba(147, 197, 253, 0.35), rgba(191, 219, 254, 0.2));
   opacity: 0.75;
 }
 
@@ -168,7 +196,7 @@
   left: 12%;
   width: 76%;
   height: 48%;
-  background: linear-gradient(to top, #163416, #122a11);
+  background: linear-gradient(to top, rgba(96, 165, 250, 0.3), rgba(147, 197, 253, 0.2));
 }
 
 .hill--near {
@@ -176,7 +204,24 @@
   left: -6%;
   width: 112%;
   height: 32%;
-  background: linear-gradient(to top, #1a3e1a, #163215);
+  background: linear-gradient(to top, rgba(96, 165, 250, 0.35), rgba(147, 197, 253, 0.25));
+}
+
+/* Hills — dark mode */
+.dark .hill--far-left {
+  background: linear-gradient(to top, #0c1525, #0a1220);
+}
+
+.dark .hill--far-right {
+  background: linear-gradient(to top, #0e1828, #0b1422);
+}
+
+.dark .hill--mid {
+  background: linear-gradient(to top, #101c30, #0d1828);
+}
+
+.dark .hill--near {
+  background: linear-gradient(to top, #132238, #101c30);
 }
 
 /* ===== Grass ===== */
@@ -191,6 +236,7 @@
   overflow: hidden;
 }
 
+/* Grass — light mode */
 .hyrule-grass::before {
   content: '';
   position: absolute;
@@ -199,14 +245,23 @@
   right: -20px;
   height: 100%;
   background:
-    repeating-linear-gradient(92deg, transparent, transparent 4px, rgba(40, 130, 40, 0.3) 4px, transparent 6px),
-    repeating-linear-gradient(87deg, transparent, transparent 7px, rgba(35, 115, 35, 0.25) 7px, transparent 9px),
-    repeating-linear-gradient(96deg, transparent, transparent 3px, rgba(30, 100, 30, 0.2) 3px, transparent 5px),
-    repeating-linear-gradient(83deg, transparent, transparent 10px, rgba(45, 140, 45, 0.15) 10px, transparent 12px);
+    repeating-linear-gradient(92deg, transparent, transparent 4px, rgba(96, 165, 250, 0.25) 4px, transparent 6px),
+    repeating-linear-gradient(87deg, transparent, transparent 7px, rgba(96, 165, 250, 0.2) 7px, transparent 9px),
+    repeating-linear-gradient(96deg, transparent, transparent 3px, rgba(96, 165, 250, 0.15) 3px, transparent 5px),
+    repeating-linear-gradient(83deg, transparent, transparent 10px, rgba(96, 165, 250, 0.1) 10px, transparent 12px);
   -webkit-mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 45%, transparent 100%);
   mask-image: linear-gradient(to top, black 0%, rgba(0,0,0,0.4) 45%, transparent 100%);
   animation: grass-sway 3.5s ease-in-out infinite;
   transform-origin: bottom center;
+  transition: background 0.5s ease;
+}
+
+.dark .hyrule-grass::before {
+  background:
+    repeating-linear-gradient(92deg, transparent, transparent 4px, rgba(40, 80, 160, 0.3) 4px, transparent 6px),
+    repeating-linear-gradient(87deg, transparent, transparent 7px, rgba(35, 70, 145, 0.25) 7px, transparent 9px),
+    repeating-linear-gradient(96deg, transparent, transparent 3px, rgba(30, 60, 130, 0.2) 3px, transparent 5px),
+    repeating-linear-gradient(83deg, transparent, transparent 10px, rgba(45, 90, 170, 0.15) 10px, transparent 12px);
 }
 
 .hyrule-grass::after {
@@ -217,13 +272,21 @@
   right: -20px;
   height: 70%;
   background:
-    repeating-linear-gradient(85deg, transparent, transparent 5px, rgba(50, 155, 50, 0.2) 5px, transparent 7px),
-    repeating-linear-gradient(94deg, transparent, transparent 9px, rgba(44, 138, 44, 0.15) 9px, transparent 11px),
-    repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(55, 160, 55, 0.12) 6px, transparent 8px);
+    repeating-linear-gradient(85deg, transparent, transparent 5px, rgba(96, 165, 250, 0.15) 5px, transparent 7px),
+    repeating-linear-gradient(94deg, transparent, transparent 9px, rgba(96, 165, 250, 0.1) 9px, transparent 11px),
+    repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(96, 165, 250, 0.08) 6px, transparent 8px);
   -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
   mask-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
   animation: grass-sway-reverse 4.5s ease-in-out infinite;
   transform-origin: bottom center;
+  transition: background 0.5s ease;
+}
+
+.dark .hyrule-grass::after {
+  background:
+    repeating-linear-gradient(85deg, transparent, transparent 5px, rgba(50, 100, 180, 0.2) 5px, transparent 7px),
+    repeating-linear-gradient(94deg, transparent, transparent 9px, rgba(44, 88, 165, 0.15) 9px, transparent 11px),
+    repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(55, 105, 185, 0.12) 6px, transparent 8px);
 }
 
 /* ===== Fireflies ===== */
@@ -232,21 +295,27 @@
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(180, 255, 100, 0.9);
+  background: rgba(100, 180, 255, 0.9);
   box-shadow:
-    0 0 6px 2px rgba(180, 255, 100, 0.5),
-    0 0 14px 5px rgba(180, 255, 100, 0.15);
+    0 0 6px 2px rgba(100, 180, 255, 0.5),
+    0 0 14px 5px rgba(100, 180, 255, 0.15);
   pointer-events: none;
   z-index: 1;
   animation: firefly var(--duration) ease-in-out infinite;
   animation-delay: var(--delay);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.dark .firefly {
+  opacity: 1;
 }
 
 .firefly--navi {
   width: 4px;
   height: 4px;
-  background: rgba(120, 200, 255, 0.9);
+  background: rgba(140, 200, 255, 0.9);
   box-shadow:
-    0 0 8px 3px rgba(120, 200, 255, 0.5),
-    0 0 18px 7px rgba(120, 200, 255, 0.15);
+    0 0 8px 3px rgba(140, 200, 255, 0.5),
+    0 0 18px 7px rgba(140, 200, 255, 0.15);
 }
